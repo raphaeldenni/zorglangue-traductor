@@ -1,0 +1,23 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "zorglangue_traductor"
+version = "0.0.1"
+authors = [
+  { name="Raphaël Denni" },
+]
+description = "A Python module that allows you to traduce the best language, Zorglangue. Works from a Latin language (originally French) to Zorglangue and vice versa. Eviv Bulgroz !"
+readme = "README.md"
+license = { file="LICENSE" }
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: Microsoft :: Windows",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/SlyEyes/zorglangue-traductor"
+"Bug Tracker" = "https://github.com/SlyEyes/zorglangue-traductor/issues"

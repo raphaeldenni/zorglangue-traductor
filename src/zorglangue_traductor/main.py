@@ -1,8 +1,8 @@
-# Zorglangue module
+# zorglangue-traductor
 # by Raphaël DENNI
 
 # Functions
-def zorglangue(string):
+def zorglonde(string):
     ch = string.split(" ")
     ch1 = []
 
@@ -11,25 +11,26 @@ def zorglangue(string):
 
         ch_temp.reverse()
 
-        shift(ch_temp,",")
+        shift(ch_temp, ",")
         # shift(ch_temp,";")
         # shift(ch_temp,":")
-        shift(ch_temp,".")
+        shift(ch_temp, ".")
         # shift(ch_temp,"?")
         # shift(ch_temp,"!")
-        shift(ch_temp,"'", 0, True)
+        shift(ch_temp, "'", 0, True)
 
         maj(ch_temp)
 
         ch1.extend(ch_temp)
         ch1.append(" ")
 
-    return ch1
+    return "".join(ch1)
 
-def shift(ch_temp,value, position=190000, mate=False):
+
+def shift(ch_temp, value, position=190000, mate=False):
     if value in ch_temp:
         j = ch_temp.index(value)
-        letter = ch_temp[j+1]
+        letter = ch_temp[j + 1]
 
         ch_temp.remove(value)
         ch_temp.insert(position, value)
@@ -44,9 +45,10 @@ def maj(ch_temp):
     for j in ch_temp:
         if j.isupper():
             upper += 1
-               
+
     if upper == 1:
         ch_temp = (((str(ch_temp[0])).upper()) + (("".join(ch_temp[1:])).lower())).split(" ")
+
 
 """
    Copyright 2022 Raphaël Denni
