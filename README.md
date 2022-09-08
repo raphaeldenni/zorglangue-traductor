@@ -13,7 +13,7 @@ Simply import the module into your Python 3 program, and be under Zorglub domina
 # by Raphaël DENNI
 
 # Import
-from zorglangue_traductor.zorglangue_traductor import zorglonde
+from zorglangue_traductor.main import zorglonde
 
 # Code
 print("--- Zorglangue program ---\n--- by Raphaël DENNI ---")
