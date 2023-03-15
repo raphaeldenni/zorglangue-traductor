@@ -4,20 +4,20 @@ build-backend = "hatchling.build"
 
 [project]
 name = "zorglangue_traductor"
-version = "1.0.0"
+version = "2.0.0"
 authors = [
   { name="Raphaël Denni" },
 ]
-description = "A Python module that allows you to traduce the best language, Zorglangue. Works from a Latin language (originally French) to Zorglangue and vice versa. Eviv Bulgroz !"
+description = "A Python module that allows you to traduce the fake language Zorglangue from the Spirou comic strips. Works from a Latin language (originally French) to Zorglangue and vice versa. Eviv Bulgroz !"
 readme = "README.md"
 license = { file="LICENSE" }
-requires-python = ">=3.10"
+requires-python = ">=3.0"
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: Apache Software License",
+    "License :: OSI Approved :: MIT License",
     "Operating System :: Microsoft :: Windows",
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/SlyEyes/zorglangue-traductor"
-"Bug Tracker" = "https://github.com/SlyEyes/zorglangue-traductor/issues"
+"Homepage" = "https://github.com/raphaeldenni/zorglangue-traductor"
+"Bug Tracker" = "https://github.com/raphaeldenni/zorglangue-traductor/issues"

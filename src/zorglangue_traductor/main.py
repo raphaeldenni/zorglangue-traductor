@@ -1,67 +1,70 @@
 # zorglangue-traductor
 # by Raphaël DENNI
 
-# Functions
+# Imports functions from shift.py and lower_upper.py
+from src.zorglangue_traductor.utils.shift import shift
+from src.zorglangue_traductor.utils.lower_upper import lower_upper
+
+
+# Function that translates a string into Zorglangue
+# Fun fact: Zorglonde is the name of the waves that transform people into Zorglhommes who speak Zorglangue
 def zorglonde(string):
-    ch = string.split(" ")
-    ch1 = []
+    string = string.split(" ")  # Split the string with spaces as separators to be able to reverse each word separately
+    zorg_string = []
 
-    for i in range(0, len(ch), 1):
-        ch_temp = list(ch[i])
+    punctuation_list = [",", ";", ":", ".", "?", "!"]
 
-        ch_temp.reverse()
+    # The next lines reverse each word of the string individually because they need to stay in the same order
+    for i in range(0, len(string), 1):
+        temp_list = list(string[i])
 
-        shift(ch_temp, ",")
-        # shift(ch_temp,";")
-        # shift(ch_temp,":")
-        shift(ch_temp, ".")
-        # shift(ch_temp,"?")
-        # shift(ch_temp,"!")
-        shift(ch_temp, "'", 0, True)
+        if len(temp_list) > 1:  # The next lines are not executed if the word is only one letter long to avoid errors
+            temp_list.reverse()
 
-        maj(ch_temp)
+            # The next lines shift common ponctuations characters to the right after reversing a word,
+            # because the function reverse() reverses these characters in a string
+            # while they must remain at the same place.
+            # This is necessary to correspond to the punctuation of the Zorglangue language (see shift.py)
+            for j in punctuation_list:
+                shift(temp_list, j)
 
-        ch1.extend(ch_temp)
-        ch1.append(" ")
+            # The following case is specific to the apostrophe character
+            # because it is the only character that is shifted to the left with another character
+            # (e.g. with this, "l'appareil" becomes "l'lierappa" and not "lierappa'l")
+            shift(temp_list, "'", 0, True)
 
-    return "".join(ch1)
+            # The next line makes the letters lowercase and if needed capitalizes the first letter of the new string,
+            # because the function reverse() places the first letter, which is commonly capitalized,
+            # at the end of the word/string.
+            # This is necessary to correspond to the letter capitalization of the Zorglangue language (see lower_upper.py)
+            lower_upper(temp_list)
 
+        zorg_string.extend(temp_list)
+        zorg_string.append(" ")
 
-def shift(ch_temp, value, position=190000, mate=False):
-    if value in ch_temp:
-        j = ch_temp.index(value)
-        letter = ch_temp[j + 1]
-
-        ch_temp.remove(value)
-        ch_temp.insert(position, value)
-
-        if mate:
-            ch_temp.remove(letter)
-            ch_temp.insert(position, letter)
-
-
-def maj(ch_temp):
-    upper = 0
-    for j in ch_temp:
-        if j.isupper():
-            upper += 1
-
-    if upper == 1:
-        ch_temp = (((str(ch_temp[0])).upper()) + (("".join(ch_temp[1:])).lower())).split(" ")
+    return "".join(zorg_string)
 
 
 """
-   Copyright 2022 Raphaël Denni
+    MIT License
 
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
+    Copyright (c) 2023 Raphaël Denni
+    
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+    
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+    
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
 """
